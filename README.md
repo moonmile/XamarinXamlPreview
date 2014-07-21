@@ -25,7 +25,7 @@ However, since it does not depend on FSharp.Core.dll, you can use in the same wa
 Xamarin.Forms.XamlProvider
 https://www.nuget.org/packages/Xamarin.Forms.XamlProvider/
 
-# eference 
+# Reference 
 
 XamarinXamlPreview
 
