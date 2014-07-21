@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+					   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+					   x:Class="XamarinXamlPreview.MainPage"
+             Padding="20">
+  <StackLayout>
+    <Label Text="Previewer for XAML of Xamarin.Forms" />
+    <Label x:Name="label" Font="Large"  />
+
+    <Label Text="app name" />
+    <Label Text="{Binding AppName}" />
+    <Label Text="app version" />
+    <Label Text="{Binding Version}" />
+    <Label Text="update date" />
+    <Label Text="{Binding Updated, StringFormat='{0:T}'}" />
+    <Button x:Name="buttonNextPage" Text="Next Page" />
+    <Button x:Name="buttonStopWatch" Text="Go Stop Watchs" />
+    <Button x:Name="buttonStopWatchDownload" Text="Download View from Internet" />
+
+  </StackLayout>
+</ContentPage>
