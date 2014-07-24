@@ -1,6 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="XamarinXamlPrev\ViewModel\ViewModelStopWatch.fs">
+    <Files>
+      <File FileName="XamarinXamlPrev\Xaml\StopWatchPage.xml" Line="1" Column="1" />
+      <File FileName="XamarinXamlPrev\ViewModel\DataModel.fs" Line="10" Column="1" />
+      <File FileName="XamarinXamlPrev\ViewModel\ViewModelStopWatch.fs" Line="35" Column="13" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

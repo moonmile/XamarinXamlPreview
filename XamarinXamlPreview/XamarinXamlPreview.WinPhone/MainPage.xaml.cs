@@ -21,7 +21,7 @@ namespace XamarinXamlPreview.WinPhone
             InitializeComponent();
 
             Forms.Init();
-            Content = XamarinXamlPreview.App.GetMainPage().ConvertPageToUIElement(this);
+            Content = XamarinXamlPrev.App.GetMainPage().ConvertPageToUIElement(this);
         }
     }
 }

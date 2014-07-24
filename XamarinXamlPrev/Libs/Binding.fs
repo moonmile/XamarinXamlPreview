@@ -10,7 +10,7 @@ open System.Reflection
 open System.ComponentModel
 open System.Windows.Input
 
-
+[<AllowNullLiteral>]
 type ViewModelBase() =
     let propertyChangedEvent = new DelegateEvent<PropertyChangedEventHandler>()
     interface INotifyPropertyChanged with

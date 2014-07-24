@@ -5,7 +5,6 @@ open System.Linq
 open System.Text
 open Xamarin.Forms
 open Moonmile.XFormsProvider
-open Moonmile.XForms
 open System.IO
 open System.Reflection
 

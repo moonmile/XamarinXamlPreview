@@ -6,20 +6,13 @@ open System.Text
 open Xamarin.Forms
 open System.IO
 open System.Reflection
-open Moonmile.XForms
 open System.Threading.Tasks
 open System.Net.Http
+open Moonmile.XFormsProvider
 
-module XForms =
-    type Page with
-        /// <summary>
-        /// alias FindByName
-        /// </summary>
-        /// <param name="name"></param>
-        member this.FindByName<'T when 'T :> Element >( name:string) =
-            FindByName(name, this) :?> 'T
-
-open XForms // Page.FindByName<>() を入れ替える
+module Async =
+    let AwaitTaskVoid : (Task -> Async<unit>) =
+        Async.AwaitIAsyncResult >> Async.Ignore
 
 type MainPage(path:string) =
     inherit ContentPage()
@@ -28,37 +21,33 @@ type MainPage(path:string) =
     let mutable buttonStopWatch:Button = null
     let mutable buttonStopWatchDownload:Button = null
     let mutable label:Label = null
+
+    let pushNextPage(next) =
+        let AwaitTaskVoid : (Task -> Async<unit>) =
+            Async.AwaitIAsyncResult >> Async.Ignore
+        page.Navigation.PushAsync(next) |> AwaitTaskVoid |> ignore
+        
     
     let pushPageVM(rn:string, vm:ViewModelBase) =
         let xaml = ResourceLoader.GetString(rn)
-        let next = ParseXaml.LoadXaml(xaml) 
+        let next = Moonmile.XForms.ParseXaml.LoadXaml(xaml) 
         next.BindingContext <- vm
-        let t = new Task( fun() -> 
-            let task = page.Navigation.PushAsync(next)
-            task.Start()
-        )
-        t.RunSynchronously()
-    
+        pushNextPage(next)
+
     let pushPage(rn:string) =
         let xaml = ResourceLoader.GetString(rn)
-        let next = ParseXaml.LoadXaml(xaml) 
-        let t = new Task( fun() -> 
-            let task = page.Navigation.PushAsync(next)
-            task.Start()
-        )
-        t.RunSynchronously()
+        let next = Moonmile.XForms.ParseXaml.LoadXaml(xaml) 
+        pushNextPage(next)
 
-    let pushPageDL(url:string) =
+    let pushPageDL(url:string, vm:ViewModelBase) =
         
         try 
             let hc = new HttpClient()
             let xaml = hc.GetStringAsync(url).Result
-            let next = ParseXaml.LoadXaml(xaml) 
-            let t = new Task( fun() -> 
-                let task = page.Navigation.PushAsync(next)
-                task.Start()
-            )
-            t.RunSynchronously()
+            let next = Moonmile.XForms.ParseXaml.LoadXaml(xaml) 
+            if vm <> null then next.BindingContext <- vm
+            pushNextPage(next)
+
         with
         | _ -> 
             label.Text <- String.Format("Error: cannot open {0}", url )
@@ -66,7 +55,7 @@ type MainPage(path:string) =
     do 
         let xaml = ResourceLoader.GetString(path)
 
-        page <- ParseXaml.LoadXaml(xaml)
+        page <- Moonmile.XForms.ParseXaml.LoadXaml(xaml)
 
         buttonNextPage <- page.FindByName<Button>("buttonNextPage")
         buttonStopWatch <- page.FindByName<Button>("buttonStopWatch")
@@ -80,7 +69,7 @@ type MainPage(path:string) =
             fun(e) -> pushPage("StopWatchPage.xml"))
 
         buttonStopWatchDownload.Clicked.Add( 
-            fun(e) -> pushPageDL("http://moonmile.net/up/DownLoadPage.xml"))
+            fun(e) -> pushPageDL("http://moonmile.net/up/DownLoadPage.xml", new ViewModelStopWatch()))
 
     member this.Page 
         with get() = page

@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
     <DocumentationFile>bin\Debug\XamarinXamlPrev.XML</DocumentationFile>
+    <OtherFlags>--standalone</OtherFlags>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -74,11 +75,11 @@
       <HintPath>..\packages\Xamarin.Forms.1.2.1.6229\lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="XFormsProvider">
-      <HintPath>..\packages\Xamarin.Forms.XamlProvider.0.1.3\lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\XFormsProvider.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Forms.XamlProvider.0.1.5\lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\XFormsProvider.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="XFormsProvider.CSharp">
-      <HintPath>..\packages\Xamarin.Forms.XamlProvider.0.1.3\lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\XFormsProvider.CSharp.dll</HintPath>
+      <HintPath>..\packages\Xamarin.Forms.XamlProvider.0.1.5\lib\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\XFormsProvider.CSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

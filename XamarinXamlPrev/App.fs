@@ -6,7 +6,6 @@ open System.Text
 open Xamarin.Forms
 open System.IO
 open System.Reflection
-open Moonmile.XForms
 
 type App() = 
     static member GetMainPage() =
